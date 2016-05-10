@@ -12,4 +12,7 @@ echo "====> Installing heroku plugins..."
 heroku plugins | grep heroku-docker >/dev/null ||
   heroku plugins:install heroku-docker
 
+echo "====> Bootstrapping docker-machine..."
+script/bootstrap-docker-machine
+
 echo 'Done!'

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -e
+
+. script/docker-machine-env
+
+# Make sure there's a docker-machine
+if docker-machine inspect "$DOCKER_MACHINE_NAME" >/dev/null 2>/dev/null; then
+  echo "$DOCKER_MACHINE_NAME exists"
+else
+  docker-machine create --driver virtualbox --virtualbox-memory 8096 "$DOCKER_MACHINE_NAME"
+fi
+
+# Make sure the docker-machine is running
+if [ "$(docker-machine status "$DOCKER_MACHINE_NAME")" == "Running" ]; then
+  echo "$DOCKER_MACHINE_NAME is running"
+else
+  docker-machine start "$DOCKER_MACHINE_NAME"
+fi
