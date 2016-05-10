@@ -1,8 +1,9 @@
 #!/bin/sh
 
 set -e
+script=$(dirname "$0")
 
-. script/docker-machine-env
+. $script/docker-machine-env
 
 # Make sure there's a docker-machine
 if docker-machine inspect "$DOCKER_MACHINE_NAME" >/dev/null 2>/dev/null; then

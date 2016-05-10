@@ -1,18 +1,20 @@
 #!/bin/sh
 
 set -e
+script=$(dirname "$0")
 
 echo "====> Checking homebrew dependencies..."
+(cd $script/..;
 brew bundle check &>/dev/null || {
   brew update >/dev/null
   brew bundle
-}
+})
 
 echo "====> Installing heroku plugins..."
 heroku plugins | grep heroku-docker >/dev/null ||
   heroku plugins:install heroku-docker
 
 echo "====> Bootstrapping docker-machine..."
-script/bootstrap-docker-machine
+$script/bootstrap-docker-machine
 
 echo 'Done!'

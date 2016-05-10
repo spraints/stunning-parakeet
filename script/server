@@ -3,10 +3,16 @@
 #/   --docker      Run the server in docker
 
 set -e
+script=$(dirname "$0")
+
+. $script/docker-machine-env
 
 if [ "$1" = "--docker" ]; then
-  exec script/docker-compose up --build web
+  shift
+  $script/build-base-image
+  ip=$(docker-machine ip $DOCKER_MACHINE_NAME)
+  $script/docker-compose up "$@" web | sed -e "s/^/[$ip] /"
 else
-  script/bootstrap >/dev/null
+  $script/bootstrap >/dev/null
   exec bundle exec puma -C config/puma.rb
 fi

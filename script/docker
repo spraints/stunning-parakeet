@@ -1,10 +1,11 @@
 #!/bin/sh
 
 set -e
+script=$(dirname "$0")
 
-script/bootstrap >/dev/null
+$script/bootstrap >/dev/null
 
-. script/docker-machine-env
+. $script/docker-machine-env
 eval "$(docker-machine env "$DOCKER_MACHINE_NAME")"
 
 EXE=$(basename "$0")

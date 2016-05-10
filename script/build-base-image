@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+script=$(cd $(dirname "$0"); pwd)
+
+$script/bootstrap >/dev/null
+
+cd $script/../base-image
+id=$(tar cf - * | md5sum | cut -c1-32)
+ns=spraints/hugo-pages
+tag=$ns:$id
+if ! $script/docker inspect $tag &>/dev/null; then
+  $script/docker build --tag $tag .
+fi
+
+$script/docker tag $tag $ns:latest
