@@ -1,0 +1,12 @@
+#!/bin/sh
+#/ Usage: script/server [options]
+#/   --docker      Run the server in docker
+
+set -e
+
+if [ "$1" = "--docker" ]; then
+  exec script/docker-compose up --build web
+else
+  script/bootstrap >/dev/null
+  exec bundle exec puma -C config/puma.rb
+fi
