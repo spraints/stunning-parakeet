@@ -14,5 +14,6 @@ if [ "$1" = "--docker" ]; then
   $script/docker-compose up "$@" web | sed -e "s/^/[$ip] /"
 else
   $script/bootstrap >/dev/null
+  bundle check &>/dev/null || bundle install --path .bundle
   exec bundle exec puma -C config/puma.rb --bind tcp://127.0.0.1:3939
 fi
