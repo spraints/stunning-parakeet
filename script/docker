@@ -7,4 +7,5 @@ script/bootstrap >/dev/null
 . script/docker-machine-env
 eval "$(docker-machine env "$DOCKER_MACHINE_NAME")"
 
-exec docker "$@"
+EXE=$(basename "$0")
+exec $EXE "$@"
