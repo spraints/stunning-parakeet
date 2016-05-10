@@ -1,0 +1,11 @@
+{
+  "name": "Hugo Pages",
+  "description": "GitHub Pages, powered by Hugo",
+  "website": "https://github.com/spraints/hugo-pages",
+  "success_url": "/install",
+  "image": "spraints/hugo-pages",
+  "buildpacks": [
+    { "url": "heroku/ruby" },
+    { "url": "https://github.com/spraints/hugo-pages" }
+  ]
+}
