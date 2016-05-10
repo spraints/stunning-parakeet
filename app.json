@@ -4,8 +4,16 @@
   "website": "https://github.com/spraints/hugo-pages",
   "success_url": "/install",
   "image": "spraints/hugo-pages",
-  "buildpacks": [
-    { "url": "heroku/ruby" },
-    { "url": "https://github.com/spraints/hugo-pages" }
-  ]
+  "env": {
+    "GITHUB_HOSTNAME": {
+      "description": "github.com, or your GitHub Enterprise hostname",
+      "value": "github.com"
+    },
+    "GITHUB_KEY": {
+      "description": "oauth app key, from https://github.com/settings/applications"
+    },
+    "GITHUB_SECRET": {
+      "description": "oauth app secret, from https://github.com/settings/applications"
+    }
+  }
 }
