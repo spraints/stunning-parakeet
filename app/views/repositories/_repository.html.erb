@@ -1,0 +1,8 @@
+<li>
+  <%= repository.full_name %>
+  <% if repository.hooked? %>
+    <%= link_to "add hook", hook_path(repository), :method => :put %>
+  <% else %>
+    <%= link_to "remove hook", hook_path(repository), :method => :delete %>
+  <% end %>
+</li>

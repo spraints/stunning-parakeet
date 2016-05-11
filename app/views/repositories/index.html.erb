@@ -1,0 +1,10 @@
+<p>Hi!</p>
+
+<% if @repositories.empty? %>
+<p>You have no repositories. This app won't be very useful for you.</p>
+<% else %>
+<p>Here are your repositories:</p>
+<ul>
+<%= render :partial => "repository", :collection => @repositories %>
+</ul>
+<% end %>
