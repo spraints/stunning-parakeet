@@ -5,6 +5,10 @@
   "success_url": "/install",
   "image": "spraints/hugo-pages",
   "env": {
+    "TOKEN_SECRET": {
+      "description": "secret used with MessageEncryptor to protect oauth tokens",
+      "generator: "secret"
+    },
     "GITHUB_HOSTNAME": {
       "description": "github.com, or your GitHub Enterprise hostname",
       "value": "github.com"

@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  root => "dashboards#index"
+  root :to => "welcome#index"
+
+  get "auth/:provider/callback" => "sessions#omniauth_callback"
 end
